@@ -1,0 +1,141 @@
+body {
+  font: 14px "Roboto", sans-serif;
+  background-color: #FAFAFA;
+  font-weight: 500;
+  margin: 0;
+}
+
+header, footer{
+  background-color: #FFFFFF;
+  width: 100vw;
+  height: 60px;
+  line-height: 60px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.05);
+  color: #808080;
+  text-align: center;
+}
+
+h1, h2, h3{
+  margin: 0px;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.curse{
+  margin: auto;
+  width: calc(100vw / 1.7);
+  margin-top: calc(100vh / 2 - 200px);
+}
+.curse h1{
+  color: #808080;
+  line-height: 60px;
+  font-size: 36px;
+  font-weight: 200;
+  margin-top: -10px;
+}
+.curse h1:before{
+  font-family: Eczar;
+  content: '"';
+  margin-left: -15px;
+  margin-right: 5px;
+  font-size: 50px;
+  color: #3BB3EC;
+  opacity: 0.5;
+}
+.curse h1:after{
+  font-family: Eczar;
+  content: '"';
+  margin-left: 5px;
+  font-size: 50px;
+  color: #3BB3EC;
+  opacity: 0.5;
+}
+.curse span{
+  color: #CCCCCC;
+  line-height: 30px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.timestamp{
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  color: #EFEFEF;
+  font-size: 20vw;
+  position: absolute;
+  margin: 0px;
+  top: 250px;
+  width: 100vw;
+  text-align: center;
+  letter-spacing: 5px;
+  font-weight: 900;
+  z-index: -100;
+}
+
+
+.input__curse{
+  margin: auto;
+  width: calc(100vw / 1.7);
+  position: relative;
+  display: flex;
+}
+
+input{
+  padding: 15px 60px 15px 30px;
+  color: #666666; 
+  line-height: 40px;
+  border: 2px solid #F5F5F5;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 300;
+  width: 100%;
+}
+button{
+    color: #3BB3EC; 
+    border: none;
+    background: none;
+    font-size: 20px;
+    margin-left: -50px;
+    cursor: pointer;
+    transition: color 0.4s;
+    line-height: 30px;
+    position: absolute;
+    right: 30px;
+    top: 20px;
+}
+
+button:hover{
+  color: #666666;
+}
+
+footer{
+  position: absolute;
+  bottom: 0px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #FAFAFA;
+}
+footer p{
+  font-size: 10px;
+  font-weight: 300;
+  margin: 0;
+}
+
+
+/* Some hacks */
+::placeholder {
+   color: #CCCCCC;
+}
+:-ms-input-placeholder {
+    color: #CCCCCC;
+}
+::-ms-input-placeholder {
+    color: #CCCCCC;
+}
+*:focus {
+    outline: none;
+}
