@@ -75,6 +75,26 @@ h1, h2, h3{
   z-index: -100;
 }
 
+.timestamp:before, .timestamp:after{
+  font-size: 14px;
+  color: #dddddd;
+  font-weight: 300;
+  letter-spacing: 1px;
+  width: auto;
+  position: absolute;
+}
+.timestamp:before{
+  content: "Michiel is al";
+  float: left;
+  top: -10px;
+}
+.timestamp:after{
+  content: "kalm";
+  float: right;
+  bottom: 0px;
+  margin-left: -40px;
+}
+
 
 .input__curse{
   margin: auto;
