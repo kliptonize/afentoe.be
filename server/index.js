@@ -6,7 +6,7 @@ var io = require('socket.io')(server);
 
 var Curse = require("./Curse");
 
-server.listen(3000);
+server.listen(80);
 app.use("/", express.static(path.join(__dirname, '../static/build')));
 
 // This is what we'll be using

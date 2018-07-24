@@ -7,7 +7,7 @@ import openSocket from 'socket.io-client';
 import './index.css';
 
 // Open socket connection
-const socket = openSocket(`//${window.location.hostname}:3000`);
+const socket = openSocket(`//${window.location.hostname}`);
 
 function Curse(props) {
   return (
