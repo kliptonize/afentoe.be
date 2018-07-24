@@ -44,7 +44,7 @@ class Input extends React.Component {
   }
 
   submit(){
-    if(this.state.curse !== ""){
+    if(this.state.curse !== "" && this.state.curse !== null){
       socket.emit('curse.new', this.state.curse);
       this.state.curse = "";
     }else{
