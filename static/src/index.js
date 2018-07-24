@@ -23,7 +23,7 @@ class Input extends React.Component {
     super();
 
     this.state = {
-      curse: "",
+      curse: null,
     }
 
     this.handleInput = this.handleInput.bind(this);
@@ -44,14 +44,25 @@ class Input extends React.Component {
   }
 
   submit(){
-    socket.emit('curse.new', this.state.curse);
-    this.state.curse = "";
+    if(this.state.curse !== ""){
+      socket.emit('curse.new', this.state.curse);
+      this.state.curse = "";
+    }else{
+      this.nameInput.focus(); 
+    }
   }
 
   render() {
     return (
       <div className="input__curse">
-        <input type="text" placeholder="Heeft 'm gevloekt?" onChange={this.handleInput} onKeyDown={this.keyDown} value={this.state.curse} />
+        <input 
+          type="text" 
+          placeholder="Heeft 'm gevloekt?" 
+          className={this.state.curse === "" ? "input--error" : ""}
+          onChange={this.handleInput} 
+          onKeyDown={this.keyDown} 
+          value={this.state.curse} 
+          ref={(input) => { this.nameInput = input; }} />
         <button onClick={() => this.submit()}>+</button>
       </div>
     );

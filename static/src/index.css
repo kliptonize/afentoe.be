@@ -93,6 +93,11 @@ input{
   font-size: 14px;
   font-weight: 300;
   width: 100%;
+  transition: border 0.4s;
+}
+
+input.input--error{
+  border-color: rgba(255,0,0,0.8);
 }
 button{
     color: #3BB3EC; 
