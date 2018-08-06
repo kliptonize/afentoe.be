@@ -1,3 +1,4 @@
+/* GENERAL STUFF */
 body {
   font: 14px "Roboto", sans-serif;
   background-color: #FAFAFA;
@@ -15,12 +16,156 @@ header, footer{
   text-align: center;
 }
 
-h1, h2, h3{
+h1{
+  margin: 0px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 60px;
+}
+h2{
+  margin: 0px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 60px;
+}
+h3{
   margin: 0px;
   font-weight: 300;
   font-size: 16px;
+  line-height: 60px;
 }
 
+footer{
+  position: absolute;
+  bottom: 0px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #FAFAFA;
+}
+footer p{
+  font-size: 10px;
+  font-weight: 300;
+  margin: 0;
+}
+
+footer span[role='img']{
+  margin-left: 5px;
+}
+
+/* MORE GENERIC STUFF */
+#root>section{
+  margin: 40px;
+}
+
+.box{
+  width: 70vw;
+  height: auto;
+  color: #808080;
+  padding: 0px 30px;
+  box-sizing: border-box;
+}
+.box--white{
+  background-color: rgba(255,255,255,0.7);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.05);
+}
+.box--center{
+  margin: 0 auto;
+}
+
+fieldset{
+  border: none;
+  padding: 5px 10px;
+  width: 100%;
+  margin: 0px;
+}
+.half{
+  display: inline-block;
+  width: calc(100% / 2);
+  box-sizing: border-box;
+}
+label{
+  display: block;
+  line-height: 30px;
+  font-weight: 500;
+  font-size: 12px;
+}
+input{
+  margin-left: 5px;
+  padding: 10px;
+  border: 1px solid ;
+  color: #666666; 
+  line-height: 15px;
+  border: 2px solid #F5F5F5;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 300;
+  transition: border 0.4s;
+}
+input[type="text"]{
+  width: 80%;
+}
+input[type="radio"]{
+  width: auto;
+}
+input:focus{
+  border-color: #dddddd;
+}
+
+.option{
+  display: inline-block;
+  width: calc(100% / 3);
+  max-width: 200px;
+}
+
+button{
+  margin: 10px 0px;
+  color: #FFFFFF;
+  background-color: #1875F0;
+  padding: 15px 20px;
+  text-transform: uppercase;
+  font-size: 12px;
+  border-radius: 4px;
+}
+button svg{
+  color: #FFFFFF;
+}
+
+
+
+/* CONFIG */
+
+
+/* CONTENT */
+
+
+/* UTILS */
+.text--center{
+  width: 100%;
+  text-align: center;
+}
+.text--right{
+  width: 100%;
+  text-align: right;
+}
+
+/* SOME HACKS */
+::placeholder {
+   color: #CCCCCC;
+}
+:-ms-input-placeholder {
+    color: #CCCCCC;
+}
+::-ms-input-placeholder {
+    color: #CCCCCC;
+}
+*:focus {
+    outline: none;
+}
+
+
+
+/*
 .curse{
   margin: auto;
   width: calc(100vw / 1.7);
@@ -136,31 +281,4 @@ button{
 button:hover{
   color: #666666;
 }
-
-footer{
-  position: absolute;
-  bottom: 0px;
-  height: 40px;
-  line-height: 40px;
-  background-color: #FAFAFA;
-}
-footer p{
-  font-size: 10px;
-  font-weight: 300;
-  margin: 0;
-}
-
-
-/* Some hacks */
-::placeholder {
-   color: #CCCCCC;
-}
-:-ms-input-placeholder {
-    color: #CCCCCC;
-}
-::-ms-input-placeholder {
-    color: #CCCCCC;
-}
-*:focus {
-    outline: none;
-}
+*/
