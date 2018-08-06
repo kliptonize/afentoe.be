@@ -5,7 +5,7 @@ import openSocket from 'socket.io-client';
 import Icon from './fragments/icon';
 
 // Open socket connection
-//const socket = openSocket(`//${window.location.hostname}:3000`);
+const socket = openSocket(`//${window.location.hostname}:3000`);
 
 class Config extends React.Component {
   constructor(){
@@ -20,11 +20,11 @@ class Config extends React.Component {
 
     this.handleInput = this.handleInput.bind(this);
 
-    /*socket.on('config.update', (data) => {
+    socket.on('data.update', (data) => {
       this.setState({
         data,
       });
-    });*/
+    });
   }
 
   handleInput({target}){
@@ -34,7 +34,7 @@ class Config extends React.Component {
   }
 
   submit(){
-    //socket.emit('config.edit', this.state);
+    socket.emit('config.edit', this.state);
 
     //Navigate to our own view
     window.location = `//${window.location.hostname}:3000`;

@@ -1,8 +1,12 @@
 import React from 'react';
+import openSocket from 'socket.io-client';
 
 import NumberAction from './fragments/number.action';
-// import TextAction from './fragments/text.action';
-// import DateAction from './fragments/date.action';
+import TextAction from './fragments/text.action';
+import DateAction from './fragments/date.action';
+
+// Open socket connection
+const socket = openSocket(`//${window.location.hostname}:3000`);
 
 class Content extends React.Component {
  constructor(){
@@ -13,13 +17,26 @@ class Content extends React.Component {
       verb: "vloekt",
       description: "Hoe vaak heeft Michiel ondertussen al gevloekt?",
       type: "number",
-      data: "1204"
+      value: 1204,
+      diff: 0
     }
+
+    this.update = this.update.bind(this);
+
+ 	socket.on('data.update', (data) => {
+ 		// Catch difference, and show animation where necessary
+      this.setState({
+        data,
+      });
+    });
   }
 
   update(data){
-  	console.log(data);
+  	// Send update to server
+  	socket.emit('data.edit', data);
   }
+
+
 
   render() {
   	var action = null;
@@ -27,12 +44,12 @@ class Content extends React.Component {
   		case "number":
   			action = <NumberAction callback={this.update}/>
   			break;
-  		// case "text":
-  		// 	action = <TextAction callback={this.update}/>
-  		// 	break;
-  		// case "date":
-  		// 	action = <DateAction callback={this.update}/>
-  		// 	break;
+  		case "text":
+  		 	action = <TextAction callback={this.update}/>
+  		 	break;
+  		case "date":
+  		 	action = <DateAction callback={this.update}/>
+  		 	break;
   		default:
   			action = "<br/>";
   			break;
@@ -46,7 +63,7 @@ class Content extends React.Component {
           </section>
           <section className="text--center">
           	<p>{this.state.description}</p>
-          	<p>{this.state.data}</p>
+          	<p data-diff={this.state.diff} className="value">{this.state.value}</p>
           </section>
           <section>
           	{action}

@@ -5,7 +5,7 @@ import Icon from './icon';
 
 class NumberAction extends React.Component {
 	submit(){
-		this.props.callback({data: "+1"});
+		this.props.callback({action: "add"});
 	}
 
   	render() {
