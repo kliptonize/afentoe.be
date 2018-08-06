@@ -1,8 +1,8 @@
 import React from 'react';
- 
+
 import NumberAction from './fragments/number.action';
-import TextAction from './fragments/text.action';
-import DateAction from './fragments/date.action';
+// import TextAction from './fragments/text.action';
+// import DateAction from './fragments/date.action';
 
 class Content extends React.Component {
  constructor(){
@@ -27,18 +27,18 @@ class Content extends React.Component {
   		case "number":
   			action = <NumberAction callback={this.update}/>
   			break;
-  		case "text":
-  			action = <TextAction callback={this.update}/>
-  			break;
-  		case "date":
-  			action = <DateAction callback={this.update}/>
-  			break;
+  		// case "text":
+  		// 	action = <TextAction callback={this.update}/>
+  		// 	break;
+  		// case "date":
+  		// 	action = <DateAction callback={this.update}/>
+  		// 	break;
   		default:
   			action = "<br/>";
   			break;
   	}
 
-    return ( 
+    return (
       <section>
         <div className="box box--center box--white">
           <section className="text--center">
