@@ -1,0 +1,18 @@
+FROM node:carbon-alpine
+
+WORKDIR /usr
+COPY package*.json ./
+COPY .npmrc ./
+RUN npm install --silent
+ENV NODE_PATH=/usr/node_modules
+
+WORKDIR /app
+
+RUN mkdir -p /app/node_modules/
+RUN ln -s /usr/node_modules/.bin /app/node_modules/.bin
+
+ENV TYPE=docker
+
+EXPOSE 3000
+
+CMD [ "/usr/node_modules/.bin/nodemon" ]

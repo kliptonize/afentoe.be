@@ -1,17 +1,20 @@
-var express = require('express');
-var app = express();
-var path = require('path');
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
+const express = require('express');
+const app = express();
+const path = require('path');
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
-var Curse = require("./Curse");
+const Curse = require("./Curse");
+const port = 80;
 
-server.listen(80);
+server.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
 app.use("/", express.static(path.join(__dirname, '../static/build')));
 
 // This is what we'll be using
 io.on('connection', function (socket) {
-  // A new user connected to our socket, send latest curse back  
+  // A new user connected to our socket, send latest curse back
   socket.emit('curse.update', Curse.getCurse());
 
   // Event: we have a new curse send by someone on the front-end
