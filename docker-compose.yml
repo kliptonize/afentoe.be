@@ -4,9 +4,21 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    container_name: afentoe
+    container_name: afentoe_app
+    restart: always
     ports:
       - 3000:80
+      - 5859:5859
     volumes:
       - .:/app/
       - /app/node_modules/
+    command: [ "/usr/node_modules/.bin/nodemon", "--inspect=5859" ]
+    links:
+      - mongo
+  mongo:
+    container_name: afentoe_db
+    image: mongo
+    volumes:
+      - ./db:/data/db
+    ports:
+      - "27017:27017"

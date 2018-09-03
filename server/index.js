@@ -3,9 +3,18 @@ const app = express();
 const path = require('path');
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
+const mongoose = require('mongoose');
 
 const Curse = require("./Curse");
 const port = 80;
+
+mongoose.connect('mongodb://mongo:27017/afentoe', err => {
+  if (err) {
+    console.log("Failed to connect to DB!");
+  }
+  console.log("DB Connected!!");
+});
+// require("./models/test");
 
 server.listen(port, () => {
   console.log(`Server listening on port ${port}`);
