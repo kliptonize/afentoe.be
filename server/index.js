@@ -55,7 +55,7 @@ io.on('connection', function (socket) {
   //   io.emit('curse.update', Curse.getCurse());
   // })
 
-  socket.on('config.edit', function(instanceConfig){
+  socket.on('config.edit', instanceConfig => {
     console.debug("New message", 'config.edit', instanceConfig);
     if (instanceConfig.id) {
       instanceService.update(instanceConfig.id, instanceConfig)
