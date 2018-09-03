@@ -38,19 +38,32 @@ app.use(function (err, req, res, next) {
 
 
 // FE
+const instanceService = require("./instances/service");
 app.use("/", express.static(path.join(__dirname, '../static/build')));
 
 // This is what we'll be using
 io.on('connection', function (socket) {
-  // A new user connected to our socket, send latest curse back
-  socket.emit('curse.update', Curse.getCurse());
+  // // A new user connected to our socket, send latest curse back
+  // socket.emit('curse.update', Curse.getCurse());
 
-  // Event: we have a new curse send by someone on the front-end
-  socket.on('curse.new', function(data){
-    // Set new curse
-    Curse.setCurse(data);
+  // // Event: we have a new curse send by someone on the front-end
+  // socket.on('curse.new', function(data){
+  //   // Set new curse
+  //   Curse.setCurse(data);
 
-    // Send this new curse to everyone
-    io.emit('curse.update', Curse.getCurse());
-  })
+  //   // Send this new curse to everyone
+  //   io.emit('curse.update', Curse.getCurse());
+  // })
+
+  socket.on('config.edit', function(instanceConfig){
+    if (instanceConfig.id) {
+      instanceService.update(instanceConfig.id, instanceConfig)
+        .then(doc =>  io.emit('data.update', doc))
+        .catch(err => io.emit('data.error', { msg: "Kon config niet updaten" }));
+    } else {
+      instanceService.create(instanceConfig)
+        .then(doc =>  io.emit('data.update', doc))
+        .catch(err => io.emit('data.error', { msg: "Kon config niet opslaan" }));
+    }
+  });
 });
