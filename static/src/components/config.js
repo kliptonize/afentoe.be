@@ -15,13 +15,13 @@ class Config extends React.Component {
       subject: "",
       verb: "",
       description: "",
-      type: "",
-      id: ""
+      type: ""
     };
 
     this.handleInput = this.handleInput.bind(this);
 
     socket.on('data.update', (data) => {
+      console.debug("Oui", data);
       this.setState({
         "subject": data.subject,
         "verb": data.verb,
@@ -29,6 +29,12 @@ class Config extends React.Component {
         "type": data.type,
         "id": data.id,
       });
+    });
+
+    
+    //Something went wrong
+    socket.on('data.error', (error) => {
+      console.error(error);
     });
   }
 
