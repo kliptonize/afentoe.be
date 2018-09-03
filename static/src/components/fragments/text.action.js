@@ -1,5 +1,5 @@
 import React from 'react';
-import {mdiPlus} from '@mdi/js';
+import {mdiSend} from '@mdi/js';
 
 import Icon from './icon';
 
@@ -10,9 +10,12 @@ class TextAction extends React.Component {
 
   	render() {
     	return (
-      	<p>
-      		Something else
-      	</p>
+          <div className="action__group">
+            <input type="text" placeholder="What did Michiel do this time?" />
+            <button onClick={() => this.submit()}>
+              <Icon path={mdiSend} />
+            </button>
+          </div>
     	);
   	};
 }

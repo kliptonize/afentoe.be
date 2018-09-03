@@ -10,12 +10,12 @@ class NumberAction extends React.Component {
 
   	render() {
     	return (
-    		<div className="text--center">
-		      	<a className="action" onClick={() => this.submit()}>
-		        	<span>Add another</span>
-		        	<Icon path={mdiPlus} />
-		      	</a>
-		    </div>
+          <div className="action__group pull--right">
+            <button onClick={() => this.submit()}>
+              <Icon path={mdiPlus} />
+            </button>
+            <span onClick={() => this.submit()}>Add one more</span>
+          </div>
     	);
   	};
 }

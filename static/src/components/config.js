@@ -15,14 +15,19 @@ class Config extends React.Component {
       subject: "",
       verb: "",
       description: "",
-      type: ""
-    }
+      type: "",
+      id: ""
+    };
 
     this.handleInput = this.handleInput.bind(this);
 
     socket.on('data.update', (data) => {
       this.setState({
-        data,
+        "subject": data.subject,
+        "verb": data.verb,
+        "description": data.description,
+        "type": data.type,
+        "id": data.id,
       });
     });
   }
@@ -71,7 +76,7 @@ class Config extends React.Component {
                   </div>
                   <div className="option">
                     <Icon path={mdiCalendar} />
-                    <input type="radio" value="date" name="type" checked={this.state.type === "date"} onChange={this.handleInput}/> />
+                    <input type="radio" value="date" name="type" checked={this.state.type === "date"} onChange={this.handleInput}/>
                   </div>
               </fieldset>
             </div>
