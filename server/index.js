@@ -59,12 +59,18 @@ io.on('connection', function (socket) {
     console.debug("New message", 'config.edit', instanceConfig);
     if (instanceConfig.id) {
       instanceService.update(instanceConfig.id, instanceConfig)
-        .then(doc =>  io.emit('data.update', doc))
-        .catch(err => io.emit('data.error', { msg: "Kon config niet updaten" }));
+        .then(doc =>  socket.emit('data.update', doc))
+        .catch(err => {
+          console.log("ERROR creating configInstance", err);
+          socket.emit('data.error', { msg: "Kon config niet updaten" })
+        });
     } else {
       instanceService.create(instanceConfig)
-        .then(doc =>  io.emit('data.update', doc))
-        .catch(err => io.emit('data.error', { msg: "Kon config niet opslaan" }));
+        .then(doc =>  socket.emit('data.update', doc))
+        .catch(err => {
+          console.log("ERROR creating configInstance", err);
+          socket.emit('data.error', { msg: "Kon config niet opslaan" })
+        });
     }
   });
 });
