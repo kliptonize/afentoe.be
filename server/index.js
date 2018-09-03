@@ -4,21 +4,40 @@ const path = require('path');
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const Curse = require("./Curse");
 const port = 80;
 
-mongoose.connect('mongodb://mongo:27017/afentoe', err => {
-  if (err) {
-    console.log("Failed to connect to DB!");
-  }
-  console.log("DB Connected!!");
+mongoose.connect('mongodb://mongo:27017/afentoe').then(() => {
+  console.log("Successfully connected to the database");
+}).catch(err => {
+  console.log('Could not connect to the database. Exiting now...');
+  process.exit();
 });
-// require("./models/test");
+
+app.use(cors());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
+
+app.use("/api", require("./modules.js")());
 
 server.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
+
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).json({err: 'Something broke! ==> check that console ... of hoe ik ook proper kan zeggen dat er nog geen deftige errorhandler middleware implemented is'});
+})
+
+
+
+
+// FE
 app.use("/", express.static(path.join(__dirname, '../static/build')));
 
 // This is what we'll be using
