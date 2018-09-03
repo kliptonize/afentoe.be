@@ -56,6 +56,7 @@ io.on('connection', function (socket) {
   // })
 
   socket.on('config.edit', function(instanceConfig){
+    console.debug("New message", 'config.edit', instanceConfig);
     if (instanceConfig.id) {
       instanceService.update(instanceConfig.id, instanceConfig)
         .then(doc =>  io.emit('data.update', doc))
