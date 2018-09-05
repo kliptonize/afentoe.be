@@ -1,5 +1,5 @@
 import React from 'react';
-import {mdiCalendar, mdiCounter, mdiCursorText} from '@mdi/js';
+import {mdiTextbox, mdiCounter, mdiTimer, mdiArrowLeft, mdiContentSave} from '@mdi/js';
 import openSocket from 'socket.io-client';
 
 import Icon from './fragments/icon';
@@ -20,7 +20,7 @@ class Config extends React.Component {
 
     this.handleInput = this.handleInput.bind(this);
 
-    socket.on('data.update', (data) => {
+    socket.on('config.updated', (data) => {
       console.debug("Oui", data);
       this.setState({
         "subject": data.subject,
@@ -33,7 +33,7 @@ class Config extends React.Component {
 
     
     //Something went wrong
-    socket.on('data.error', (error) => {
+    socket.on('config.error', (error) => {
       console.error(error);
     });
   }
@@ -45,64 +45,88 @@ class Config extends React.Component {
   }
 
   submit(){
+    console.log(this.state);
     socket.emit('config.edit', this.state);
 
     //Navigate to our own view
-    window.location = `//${window.location.hostname}:3000`;
+    //window.location = `//${window.location.hostname}:3000`;
+  }
+
+  historyGoBack(){
+    window.history.back();
   }
 
   render() {
     return (
-      <section>
-        <div className="box box--white box--center">
-          <section className="text--center">
-            <h1>Configuration</h1>
-          </section>
-          <section>
-            <div className="half">
-              <fieldset>
-                <label>Subject</label>
-                <input type="text" placeholder="Subject of your mockery" name="subject" value={this.state.subject} onChange={this.handleInput} />
-              </fieldset>
-              <fieldset>
-                <label>Verb</label>
-                <input type="text" placeholder="What does your subject always do?" name="verb" value={this.state.verb} onChange={this.handleInput} />
-              </fieldset>
-            </div>
-            <div className="half">
-              <fieldset>
-                <label>Type of mockery</label>
-                  <div className="option">
-                    <Icon path={mdiCursorText} size="24"/>
-                    <input type="radio" value="text" name="type" checked={this.state.type === "text"} onChange={this.handleInput} />
-                  </div>
-                  <div className="option">
+      <main class="main--wide config">
+      <div>
+        <header class="tabs">
+          <ul>
+            <li class="tab--active">Configuratie</li>
+          </ul>
+        </header>
+        <article class="panel__config">
+          <form>
+            <p><i>Hier kan je je pagina aanmaken, of bewerken.</i></p>
+            <fieldset class="fieldset--half">
+              <label>Onderwerp</label>
+              <input type="text" name="subject" placeholder="Bv. Sander" value={this.state.subject} onChange={this.handleInput} />
+            </fieldset>
+            <fieldset class="fieldset--half">
+              <label>Actie</label>
+              <input type="text" name="verb" placeholder="Bv. deployed" value={this.state.verb} onChange={this.handleInput} />
+            </fieldset>
+            <fieldset class="fieldset--full">
+              <label>Beschrijving</label>
+              <input type="text" name="description" placeholder="Bv. Hoe vaak heeft Sander al gedeployed?" value={this.state.description} onChange={this.handleInput} />
+            </fieldset>
+            <fieldset class="fieldset--full">
+              <p>Kies een type pagina</p>
+              <div>
+                <input type="radio" name="type" id="textbox" value="text" checked={this.state.type === "text"} onChange={this.handleInput} />
+                <label for="textbox">
+                  <span class="option__title">Textveld</span><br/>
+                  <span class="option__description">Een aanpasbaar invoerveld</span>
+                  <span class="option__icon">
+                    <Icon path={mdiTextbox} />
+                  </span>
+                </label>
+              </div>
+              <div>
+                <input type="radio" name="type" id="counter" value="number" checked={this.state.type === "number"} onChange={this.handleInput} />
+                <label for="counter">
+                  <span class="option__title">Counter</span><br/>
+                  <span class="option__description">Elke keer eentje omhoog</span>
+                  <span class="option__icon">
                     <Icon path={mdiCounter} />
-                    <input type="radio" value="number" name="type" checked={this.state.type === "number"} onChange={this.handleInput}/>
-                  </div>
-                  <div className="option">
-                    <Icon path={mdiCalendar} />
-                    <input type="radio" value="date" name="type" checked={this.state.type === "date"} onChange={this.handleInput}/>
-                  </div>
-              </fieldset>
-            </div>
-            <div>
-              <fieldset>
-                <label>Description</label>
-                <input type="text" placeholder="What would you like displayed?" name="description" value={this.state.description} onChange={this.handleInput} />
-              </fieldset>
-            </div>
-            <div className="text--right">
-              <button onClick={() => this.submit()}>
-                Save
-              </button>
-            </div>
-          </section>
-          <section>
-            <i>Preview</i>
-          </section>
-        </div>
-      </section>
+                  </span>
+                </label>
+              </div>
+              <div>
+                <input type="radio" name="type" id="timer" value="date" checked={this.state.type === "date"} onChange={this.handleInput} />
+                <label for="timer">
+                  <span class="option__title">Timer</span><br/>
+                  <span class="option__description">De tijd tot / sinds </span>
+                  <span class="option__icon">
+                    <Icon path={mdiTimer} />
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+          </form>
+        </article>
+        <footer class="has--top-border">
+          <button onClick={() => this.historyGoBack()}>
+            <Icon path={mdiArrowLeft} />
+            <span>Terug</span>
+          </button>
+          <button class="primary" onClick={() => this.submit()}>
+            <span>Opslaan</span>
+            <Icon path={mdiContentSave} />
+          </button>
+        </footer>
+      </div>
+    </main>
     );
   };
 }

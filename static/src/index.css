@@ -244,3 +244,249 @@ button:focus, input:focus{
     outline:0;
 }
 
+p{
+    margin: 0px 0px 30px 0px;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+main.main--wide{
+    max-width: 1140px;
+    position: relative;
+}
+main.main--wide > div{
+    max-width: 550px;
+    margin: auto;
+}
+
+.tabs{
+    height: 90px;
+    box-sizing: content-box;
+    display: block;
+    text-align: center;
+}
+.tabs:after{
+    content: " ";
+    height: 2px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    background-color: #F0F0F0;
+    top: 88px;
+}
+
+.tabs > ul{
+    padding: 0px;
+    display: inline-block;
+}
+.tabs > ul > li{
+    display: inline-block;
+    list-style-image: none;
+    color: #B3B3B3;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 20px 45px;
+    cursor: pointer;
+    transition: color 0.4s;
+    position: relative;
+}
+.tabs > ul > li.tab--active{
+    color: #1875F0;
+    font-weight: 700;
+}
+.tabs > ul > li.tab--active:after{
+    content: " ";
+    height: 2px;
+    position: absolute;
+    width: 100%;
+    background-color: #1875F0;
+    display: block;
+    bottom: -40px;
+    z-index: 100;
+}
+.tabs > ul > li:hover{
+    color: #1875F0;
+}
+
+.panel__config{
+    margin: 70px 0px;
+}
+
+.config footer{
+    height: 150px;
+    box-sizing: content-box;
+    display: block;
+    text-align: center;    
+}
+.config footer:before{
+    content: " ";
+    height: 2px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    background-color: #F0F0F0;
+    bottom: 148px;    
+}
+
+.config button{
+    margin: 50px 15px;
+    height: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #B3B3B3;
+    border: 2px solid #F5F5F5;
+    border-radius: 2px;
+    padding: 8px 28px 18px 28px;
+    cursor: pointer;
+    transition: all 0.4s;
+    box-sizing: border-box;
+}
+.config button:first-child span{
+    margin: 0px;
+    margin-left: 15px;
+}
+.config button:last-child span{
+    margin: 0px;
+    margin-right: 15px;
+}
+.config button:hover{
+    border-color: #E6E6E6;
+}
+button.primary{
+    color: #ffffff;
+    background-color: #1875F0;
+    border-color: #1875F0;
+}
+button.primary svg{
+    fill: #ffffff;
+}
+button.primary:hover{
+    background-color: #0D60CD;
+    border-color: #0D60CD;
+}
+
+form{
+    overflow: hidden;
+}
+fieldset{
+    margin: 0px;
+    display: inline-block;
+    border: none;
+    box-sizing: border-box;
+    float: left;
+    padding: 4px;
+}
+fieldset.fieldset--full{
+    width: 100%;
+}
+fieldset.fieldset--half{
+    width: 50%; 
+}
+fieldset:not(:last-of-type){
+    margin-bottom: 30px;
+}
+
+fieldset > label{
+    font-weight: 400;
+    font-size: 14px;
+    color: #666666;
+    line-height: 16px;
+    width: 100%;
+    display: block;
+    margin-bottom: 15px;
+}
+
+fieldset > input[type="text"]{
+    border: 2px solid #F5F5F5;
+    padding: 18px 20px;
+    line-height: 16px;
+    font-size: 14px;
+    color: #999999;
+    font-weight: 400;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border 0.4s;
+}
+fieldset > input[type="text"]:focus, fieldset > input[type="text"]:active{
+    border-color: #1875F0;
+}
+fieldset > input[type="text"].state--success{
+    border-color: #50D166;
+}
+fieldset > input[type="text"].state--error{
+    border-color: #F13A30;
+}
+
+
+fieldset input[type="radio"] + label{
+    width: 48%;
+    margin: 1%;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: inline-block;    
+    border-radius: 4px;
+    border: 2px solid #F0F0F0;
+    padding: 25px 30px;
+    float: left;
+    position: relative;
+}
+fieldset input[type="radio"]{
+    display: none;
+    visibility: hidden;
+}
+fieldset input[type="radio"] + label .option__icon svg{
+    fill: #808080;
+    position: absolute;
+    right: 15px;
+    top: 40px;
+    opacity: 0.2;
+    transform: scale(1.5);
+}
+fieldset input[type="radio"] + label .option__title{
+    font-weight: 400;
+    font-size: 14px;
+    color: #808080;
+    line-height: 20px;
+}
+fieldset input[type="radio"] + label .option__description{
+    font-weight: 300;
+    color: #808080;
+}
+fieldset input[type="radio"]:checked + label{
+    border-color: #1875F0;
+}
+fieldset input[type="radio"]:checked + label .option__title{
+    font-weight: 600;
+    color: #1875F0;
+}
+fieldset input[type="radio"]:checked + label .option__description{
+    font-weight: 400;
+    color: #1875F0;
+}
+fieldset input[type="radio"]:checked + label .option__icon svg{
+    fill: #1875F0;
+}
+
+
+/* RESPONSIVENESS */
+@media only screen and (max-width: 600px) {
+    .config button span{
+        display: none;
+    }
+
+    fieldset.fieldset--full, fieldset.fieldset--half{
+        width: 100%;
+    }
+
+    .panel__config{
+        margin: 30px 20px;
+    }
+
+    fieldset input[type="radio"] + label{
+        width: 100%;
+        margin: 10px 0;
+    }
+}

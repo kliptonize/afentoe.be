@@ -30,7 +30,7 @@ class Content extends React.Component {
 
     this.update = this.update.bind(this);
 
-   	socket.on('data.update', (data) => {
+   	socket.on('message.created', (data) => {
       // Catch difference, and show animation where necessary
       var temp = this.state.actions;
       temp.push(data);
@@ -38,14 +38,14 @@ class Content extends React.Component {
     });
 
     //Something went wrong
-    socket.on('data.error', (error) => {
+    socket.on('message.error', (error) => {
       console.error(error);
     });
   }
 
   update(data){
   	// Send update to server
-  	socket.emit('data.edit', data);
+  	socket.emit('message.new', data);
   }
 
   render() {
